@@ -9,5 +9,5 @@
 - change way of finding numeral in number (without strings).
 
 ## Tasks:
-- Task1: [Day1/Tests](https://github.com/Zhikh/NET.S.2018.Zhikh.01/tree/master/Logic.Tests): methods for sorting arrays of large dimension (additional class [SortChecker](https://github.com/Zhikh/NET.S.2018.Zhikh.01/blob/master/Logic.Tests/SortChecker.cs));
-- Task2: [Newton's method](http://www.statisticshowto.com/tangent-line/) for searching of root ([#1](https://github.com/EPM-RD-NETLAB/.NET-Framework-modules/tree/master/M3.%20Creating%20types%20in%20C%23))
+- [Task1](https://github.com/Zhikh/NET.S.2018.Zhikh.01/tree/master/Logic.Tests): Day1/Tests: methods for sorting arrays of large dimension (additional class [SortChecker](https://github.com/Zhikh/NET.S.2018.Zhikh.01/blob/master/Logic.Tests/SortChecker.cs));
+- [Task2](https://github.com/Zhikh/NET.S.2018.Zhikh.03/blob/master/Logic.Task2/AdditionalMathPack.cs): [Newton's method](http://www.statisticshowto.com/tangent-line/) for searching of root ([#1](https://github.com/EPM-RD-NETLAB/.NET-Framework-modules/tree/master/M3.%20Creating%20types%20in%20C%23))
