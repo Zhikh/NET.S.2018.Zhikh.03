@@ -2,11 +2,13 @@
 
 ## Changes from previous tasks:
 ### Day2/Task1(#1): 
-- [changed way of inserting bits from one number to other](https://github.com/Zhikh/NET.S.2018.Zhikh.02/blob/master/NET.S.2018.Zhikh.02/Logic.Task1/BitWorker.cs);
-- [added tests](https://github.com/Zhikh/NET.S.2018.Zhikh.02/blob/master/NET.S.2018.Zhikh.02/Logic.Task1.Tests/BitWorkerTests.cs).
+### [BitWorker](https://github.com/Zhikh/NET.S.2018.Zhikh.02/blob/master/NET.S.2018.Zhikh.02/Logic.Task1/BitWorker.cs):
+- [changed way of inserting bits from one number to other];
+- [added tests](https://github.com/Zhikh/NET.S.2018.Zhikh.02/blob/master/NET.S.2018.Zhikh.02/Logic.Task1.Tests/BitWorkerTests.cs);
+- deleted additional methods.
 
 ### Day2/Task2(#6):
-#### [DigitWorker.cs](https://github.com/Zhikh/NET.S.2018.Zhikh.02/blob/master/NET.S.2018.Zhikh.02/Logic.Task2/DigitWorker.cs): 
+#### [DigitWorker](https://github.com/Zhikh/NET.S.2018.Zhikh.02/blob/master/NET.S.2018.Zhikh.02/Logic.Task2/DigitWorker.cs): 
 - changed way of finding numeral in number (without strings);
 - removed recursion;
 - added a method for searching with strings.
