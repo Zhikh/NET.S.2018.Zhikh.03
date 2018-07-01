@@ -2,7 +2,7 @@
 
 ## Changes from previous tasks:
 ### Day2/Task1(#1): 
-### [BitWorker](https://github.com/Zhikh/NET.S.2018.Zhikh.02/blob/master/NET.S.2018.Zhikh.02/Logic.Task1/BitWorker.cs):
+#### [BitWorker](https://github.com/Zhikh/NET.S.2018.Zhikh.02/blob/master/NET.S.2018.Zhikh.02/Logic.Task1/BitWorker.cs):
 - [changed way of inserting bits from one number to other];
 - [added tests](https://github.com/Zhikh/NET.S.2018.Zhikh.02/blob/master/NET.S.2018.Zhikh.02/Logic.Task1.Tests/BitWorkerTests.cs);
 - deleted additional methods.
