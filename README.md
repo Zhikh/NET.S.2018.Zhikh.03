@@ -2,11 +2,14 @@
 
 ## Changes from previous tasks:
 ### Day2/Task1(#1): 
-- [change way of inserting bits from one number to other](https://github.com/Zhikh/NET.S.2018.Zhikh.02/blob/master/NET.S.2018.Zhikh.02/Logic.Task1/BitWorker.cs);
-- [add tests](https://github.com/Zhikh/NET.S.2018.Zhikh.02/blob/master/NET.S.2018.Zhikh.02/Logic.Task1.Tests/BitWorkerTests.cs).
+- [changed way of inserting bits from one number to other](https://github.com/Zhikh/NET.S.2018.Zhikh.02/blob/master/NET.S.2018.Zhikh.02/Logic.Task1/BitWorker.cs);
+- [added tests](https://github.com/Zhikh/NET.S.2018.Zhikh.02/blob/master/NET.S.2018.Zhikh.02/Logic.Task1.Tests/BitWorkerTests.cs).
 
 ### Day2/Task2(#6):
-- [change way of finding numeral in number (without strings)](https://github.com/Zhikh/NET.S.2018.Zhikh.02/blob/master/NET.S.2018.Zhikh.02/Logic.Task2/DigitWorker.cs).
+#### [DigitWorker.cs](https://github.com/Zhikh/NET.S.2018.Zhikh.02/blob/master/NET.S.2018.Zhikh.02/Logic.Task2/DigitWorker.cs): 
+- changed way of finding numeral in number (without strings);
+- removed recursion;
+- added a method for searching with strings.
 
 ## Tasks:
 - [Task1](https://github.com/Zhikh/NET.S.2018.Zhikh.01/tree/master/Logic.Tests): Day1/Tests: methods for sorting arrays of large dimension (additional class [SortChecker](https://github.com/Zhikh/NET.S.2018.Zhikh.01/blob/master/Logic.Tests/SortChecker.cs));
