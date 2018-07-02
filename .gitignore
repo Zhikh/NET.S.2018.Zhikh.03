@@ -265,3 +265,4 @@ Logic.Task2.Tests/Properties/AssemblyInfo.cs
 *.sln
 *.StyleCop
 Logic.Task2/Properties/AssemblyInfo.cs
+AssemblyInfo.cs
