@@ -16,7 +16,7 @@
 ## Tasks
 - [Task1](https://github.com/Zhikh/NET.S.2018.Zhikh.01/tree/master/Logic.Tests): Day1/Tests: methods for sorting arrays of large dimension (additional class [SortChecker](https://github.com/Zhikh/NET.S.2018.Zhikh.01/blob/master/Logic.Tests/SortChecker.cs));
 - [Task2](https://github.com/Zhikh/NET.S.2018.Zhikh.03/blob/master/Logic.Task2/AdditionalMathPack.cs): [Newton's method](http://www.statisticshowto.com/tangent-line/) for searching of root ([#1](https://github.com/EPM-RD-NETLAB/.NET-Framework-modules/tree/master/M3.%20Creating%20types%20in%20C%23));
-- Task3: [#5](https://github.com/EPM-RD-NETLAB/.NET-Framework-modules/tree/master/M2.%20Basic%20Coding%20in%20C%23);
+- [Task3](https://github.com/Zhikh/NET.S.2018.Zhikh.03/blob/master/Logic.Task3/UnusualMath.cs): [#5](https://github.com/EPM-RD-NETLAB/.NET-Framework-modules/tree/master/M2.%20Basic%20Coding%20in%20C%23);
 - Task4: [#2](https://github.com/EPM-RD-NETLAB/.NET-Framework-modules/tree/master/M4.%20Methods%20in%20details);
 - Task5: compare performances for realizations of algorithms using strings and integer division operations on arrays of large dimension with a large number of elements of order int.MaxValue.
 
@@ -25,6 +25,5 @@
 
 ## TODO
 - exclude round;
-- Task3;
 - Task4;
 - Task5.
