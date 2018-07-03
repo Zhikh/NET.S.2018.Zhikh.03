@@ -11,20 +11,15 @@ namespace Logic.Task3
         /// Finds next number that consist of its numerals.
         /// </summary>
         /// <param name="value"> Value for finding</param>
-        /// <param name="time"> Time of work </param>
         /// <returns> Next bigger number </returns>
         /// <exception cref="ArgumentException"> When value less than zero </exception>
-        public static TimeSpan FindNextBiggerNumber(int value, ref int nextValue)
+        public static int FindNextBiggerNumber(int value)
         {
             if (value < 0)
             {
                 throw new ArgumentException("Argument x can't be less than 0!");
             }
-
-            var stopwatch = new Stopwatch();
-
-            stopwatch.Start();
-
+            
             int[] array = value.ToArray();
 
             int tale = array.Length - 1;
@@ -45,7 +40,7 @@ namespace Logic.Task3
                 {
                     if (array[i] < array[tale])
                     {
-                        Swap(array, tale, i);
+                        Swap(ref array[i], ref array[tale]);
 
                         isStop = true;
 
@@ -63,22 +58,44 @@ namespace Logic.Task3
 
             if (isStop)
             {
-                nextValue = array.ToInt();
+                return array.ToInt();
             }
             else
             {
-                nextValue = -1;
+                return -1;
             }
-
-            return stopwatch.Elapsed;
         }
 
+        /// <summary>
+        /// Finds next number that consist of its numerals.
+        /// </summary>
+        /// <param name="value"> Value for finding</param>
+        /// <param name="time"> Time of work </param>
+        /// <returns> Next bigger number </returns>
+        /// <exception cref="ArgumentException"> When value less than zero </exception>
+        public static int FindNextBiggerNumber(int value, out TimeSpan time)
+        {
+            var stopwatch = new Stopwatch();
+
+            stopwatch.Start();
+
+            int result = FindNextBiggerNumber(value);
+
+            stopwatch.Stop();
+            time = stopwatch.Elapsed;
+
+            return result;
+        }
+
+        #endregion
+
+        #region Private methods
         /// <summary>
         /// Converts integer value to integer array.
         /// </summary>
         /// <param name="value"> Number </param>
         /// <returns> Array of numerals of number </returns>
-        public static int[] ToArray(this int value)
+        private static int[] ToArray(this int value)
         {
             if (value == 0)
             {
@@ -104,9 +121,9 @@ namespace Logic.Task3
         /// Converts integer array in integer value.
         /// </summary>
         /// <param name="array"> Array for converting </param>
-        /// <returns> Integer value of concated values from array </returns>
+        /// <returns> Integer value of concatenated values from array </returns>
         /// <exception cref="ArgumentException"> When length of array is more than integer max value size </exception>
-        public static int ToInt(this int[] array)
+        private static int ToInt(this int[] array)
         {
             if (array.Length > int.MaxValue)
             {
@@ -123,18 +140,16 @@ namespace Logic.Task3
 
             return result;
         }
-        #endregion
 
-        #region Private methods
         /// <summary>
         /// Swap elements of array
         /// </summary>
-        private static void Swap(int[] array, int taleIndex, int i)
+        private static void Swap(ref int firstValue, ref int secondValue)
         {
-            int temp = array[taleIndex];
+            int temp = firstValue;
 
-            array[taleIndex] = array[i];
-            array[i] = temp;
+            firstValue = secondValue;
+            secondValue = temp;
         }
         #endregion
     }
