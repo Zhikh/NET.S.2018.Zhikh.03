@@ -4,20 +4,121 @@ namespace Logic.Task4
 {
     public static class GreatestCommonDivisor
     {
-        public static int Time { get; private set; }
-
         #region Public methods
-        #region Euclidean
+        /// <summary>
+        /// Finds greatest common divisor for three values.
+        /// </summary>
+        /// <param name="firstValue"> First value </param>
+        /// <param name="secondValue"> Second value </param>
+        /// <param name="isEuclidean"> Set default algorithm </param>
+        /// <returns> Greatest common divisor and time of work </returns>
+        public static (int Value, int Time) FindGCD(int firstValue, int secondValue, bool isEuclidean = true)
+        {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            
+            if (isEuclidean)
+            {
+                return (FindGCDEuclidean(firstValue, secondValue), watch.Elapsed.Milliseconds);
+            }
+            else
+            {
+                return (FindGCDStein(firstValue, secondValue), watch.Elapsed.Milliseconds);
+            }
+        }
+
+        /// <summary>
+        /// Finds greatest common divisor for three values.
+        /// </summary>
+        /// <param name="firstValue"> First value </param>
+        /// <param name="secondValue"> Second value </param>
+        /// <param name="thirdValue"> Third value </param>
+        /// <param name="isEuclidean"> Set default algorithm </param>
+        /// <returns> Greatest common divisor and time of work </returns>
+        public static (int Value, int Time) FindGCD(int firstValue, int secondValue, int thirdValue, bool isEuclidean = true)
+        {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            int gcd;
+
+            if (isEuclidean)
+            {
+                gcd = FindGCDEuclidean(firstValue, secondValue);
+
+                return (FindGCDEuclidean(gcd, thirdValue), watch.Elapsed.Milliseconds);
+            }
+            else
+            {
+                gcd = FindGCDStein(firstValue, secondValue);
+
+                return (FindGCDStein(gcd, thirdValue), watch.Elapsed.Milliseconds);
+            }
+        }
+
+        /// <summary>
+        /// Finds greatest common divisor for four values.
+        /// </summary>
+        /// <param name="firstValue"> First value </param>
+        /// <param name="secondValue"> Second value </param>
+        /// <param name="thirdValue"> Third value </param>
+        /// <param name="fourthValue"> Fourth value </param>
+        /// <param name="isEuclidean"> Set default algorithm </param>
+        /// <returns> Greatest common divisor and time of work </returns>
+        public static (int Value, int Time) FindGCD(int firstValue, int secondValue, int thirdValue, int fourthValue, bool isEuclidean = true)
+        {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            int gcd = FindGCD(firstValue, secondValue, thirdValue, isEuclidean).Value;
+
+            if (isEuclidean)
+            {
+                return (FindGCDEuclidean(gcd, fourthValue), watch.Elapsed.Milliseconds);
+            }
+            else
+            {
+                return (FindGCDStein(gcd, fourthValue), watch.Elapsed.Milliseconds);
+            }
+        }
+
+        /// <summary>
+        /// Finds greatest common divisor for n values.
+        /// </summary>
+        /// <param name="values"> Params </param>
+        /// <param name="isEuclidean"> Set default algorithm </param>
+        /// <returns> Greatest common divisor and time of work </returns>
+        public static (int Value, int Time) FindGCD(bool isEuclidean = true, params int[] values)
+        {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+
+            int gcd = 0;
+
+            if (isEuclidean)
+            {
+                foreach (var value in values)
+                {
+                    gcd = FindGCDEuclidean(gcd, value);
+                }
+            }
+            else
+            {
+                foreach (var value in values)
+                {
+                    gcd = FindGCDStein(gcd, value);
+                }
+            }
+
+            watch.Stop();
+
+            return (gcd, watch.Elapsed.Milliseconds);
+        }
+        #endregion
+
+        #region Private methods
         /// <summary>
         /// Finds greatest common divisor for two values by Euclidean's algorithm.
         /// </summary>
         /// <param name="firstValue"> First value </param>
         /// <param name="secondValue"> Second value </param>
         /// <returns> Greatest common divisor </returns>
-        public static int FindGCDEuclidean(int firstValue, int secondValue)
+        private static int FindGCDEuclidean(int firstValue, int secondValue)
         {
-            System.Diagnostics.Stopwatch _watch = System.Diagnostics.Stopwatch.StartNew();
-            
             int temp;
 
             while (firstValue != 0)
@@ -27,86 +128,17 @@ namespace Logic.Task4
                 secondValue = temp;
             }
 
-            Time = _watch.Elapsed.Milliseconds;
-
             return Math.Abs(secondValue);
         }
 
-        // TODO: do with me smth
-        #region Common
-        /// <summary>
-        /// Finds greatest common divisor for three values by Euclidean's algorithm.
-        /// </summary>
-        /// <param name="firstValue"> First value </param>
-        /// <param name="secondValue"> Second value </param>
-        /// <param name="thirdValue"> Third value </param>
-        /// <returns> Greatest common divisor </returns>
-        public static int FindGCDEuclidean(int firstValue, int secondValue, int thirdValue)
-        {
-            System.Diagnostics.Stopwatch _watch = System.Diagnostics.Stopwatch.StartNew();
-
-            int gcd = FindGCDEuclidean(firstValue, secondValue);
-            int result = FindGCDEuclidean(gcd, thirdValue);
-
-            Time = _watch.Elapsed.Milliseconds;
-
-            return result;
-        }
-
-        /// <summary>
-        /// Finds greatest common divisor for four values by Euclidean's algorithm.
-        /// </summary>
-        /// <param name="firstValue"> First value </param>
-        /// <param name="secondValue"> Second value </param>
-        /// <param name="thirdValue"> Third value </param>
-        /// <param name="fourthValue"> Fourth value </param>
-        /// <returns> Greatest common divisor </returns>
-        public static int FindGCDEuclidean(int firstValue, int secondValue, int thirdValue, int fourthValue)
-        {
-            System.Diagnostics.Stopwatch _watch = System.Diagnostics.Stopwatch.StartNew();
-
-            int gcd = FindGCDEuclidean(firstValue, secondValue, thirdValue);
-            int result = FindGCDEuclidean(gcd, fourthValue);
-
-            Time = _watch.Elapsed.Milliseconds;
-
-            return result;
-        }
-
-        /// <summary>
-        /// Finds greatest common divisor for n values by Euclidean's algorithm.
-        /// </summary>
-        /// <param name="values"> Params </param>
-        /// <returns> Greatest common divisor </returns>
-        public static int FindGCDEuclidean(params int[] values)
-        {
-            System.Diagnostics.Stopwatch _watch = System.Diagnostics.Stopwatch.StartNew();
-
-            int gcd = 0;
-
-            foreach (var value in values)
-            {
-                gcd = FindGCDEuclidean(gcd, value);
-            }
-
-            Time = _watch.Elapsed.Milliseconds;
-
-            return gcd;
-        }
-        #endregion
-        #endregion
-
-        #region Stein
         /// <summary>
         /// Finds greatest common divisor for two values by Stein's algorithm.
         /// </summary>
         /// <param name="firstValue"> First value </param>
         /// <param name="secondValue"> Second value </param>
         /// <returns> Greatest common divisor </returns>
-        public static int FindGCDStein(int firstValue, int secondValue)
+        private static int FindGCDStein(int firstValue, int secondValue)
         {
-            int startTime = DateTime.Now.Millisecond;
-
             if (firstValue == 0)
             {
                 return secondValue;
@@ -141,77 +173,9 @@ namespace Logic.Task4
             }
             while (secondValue != 0);
 
-            Time = DateTime.Now.Millisecond - startTime;
-
             return firstValue << shift;
         }
 
-        // TODO: do with me smth
-        #region Common
-        /// <summary>
-        /// Finds greatest common divisor for three values by Stein's algorithm.
-        /// </summary>
-        /// <param name="firstValue"> First value </param>
-        /// <param name="secondValue"> Second value </param>
-        /// <param name="thirdValue"> Third value </param>
-        /// <returns> Greatest common divisor </returns>
-        public static int FindGCDStein(int firstValue, int secondValue, int thirdValue)
-        {
-            int startTime = DateTime.Now.Millisecond;
-
-            int gcd = FindGCDStein(firstValue, secondValue);
-            int result = FindGCDStein(gcd, thirdValue);
-
-            Time = DateTime.Now.Millisecond - startTime;
-
-            return result;
-        }
-
-        /// <summary>
-        /// Finds greatest common divisor for four values by Stein's algorithm.
-        /// </summary>
-        /// <param name="firstValue"> First value </param>
-        /// <param name="secondValue"> Second value </param>
-        /// <param name="thirdValue"> Third value </param>
-        /// <param name="fourthValue"> Fourth value </param>
-        /// <returns> Greatest common divisor </returns>
-        public static int FindGCDStein(int firstValue, int secondValue, int thirdValue, int fourthValue)
-        {
-            int startTime = DateTime.Now.Millisecond;
-
-            int gcd = FindGCDStein(firstValue, secondValue, thirdValue);
-            int result = FindGCDStein(gcd, fourthValue);
-
-            Time = DateTime.Now.Millisecond - startTime;
-
-            return result;
-        }
-
-        /// <summary>
-        /// Finds greatest common divisor for n values by Stein's algorithm.
-        /// </summary>
-        /// <param name="values"> Params </param>
-        /// <returns> Greatest common divisor </returns>
-        public static int FindGCDStein(params int[] values)
-        {
-            int startTime = DateTime.Now.Millisecond;
-
-            int gcd = 0;
-
-            foreach (var value in values)
-            {
-                gcd = FindGCDStein(gcd, value);
-            }
-
-            Time = DateTime.Now.Millisecond - startTime;
-
-            return gcd;
-        }
-        #endregion
-        #endregion
-        #endregion
-
-        #region Private methods
         private static void Swap(ref int firstValue, ref int secondValue)
         {
             int temp = secondValue;
