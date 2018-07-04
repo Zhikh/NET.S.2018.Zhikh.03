@@ -35,20 +35,7 @@ namespace Logic.Task3
                     j--;
                 }
 
-                i = tale - 1;
-                while ((i >= j) && (i >= 0))
-                {
-                    if (array[i] < array[tale])
-                    {
-                        Swap(ref array[i], ref array[tale]);
-
-                        isStop = true;
-
-                        break;
-                    }
-
-                    i--;
-                }
+                i = TryExchange(array, tale, j, ref isStop);
 
                 tale--;
                 j++;
@@ -90,11 +77,28 @@ namespace Logic.Task3
         #endregion
 
         #region Private methods
-        /// <summary>
-        /// Converts integer value to integer array.
-        /// </summary>
-        /// <param name="value"> Number </param>
-        /// <returns> Array of numerals of number </returns>
+        private static int TryExchange(int[] array, int tale, int j, ref bool isStop)
+        {
+            int i = tale - 1;
+
+            while ((i >= j) && (i >= 0))
+            {
+                if (array[i] < array[tale])
+                {
+                    Swap(ref array[i], ref array[tale]);
+
+                    isStop = true;
+
+                    break;
+                }
+
+                i--;
+            }
+
+            return i;
+        }
+
+        // Converts integer value to integer array.
         private static int[] ToArray(this int value)
         {
             if (value == 0)
@@ -116,13 +120,8 @@ namespace Logic.Task3
 
             return array;
         }
-
-        /// <summary>
-        /// Converts integer array in integer value.
-        /// </summary>
-        /// <param name="array"> Array for converting </param>
-        /// <returns> Integer value of concatenated values from array </returns>
-        /// <exception cref="ArgumentException"> When length of array is more than integer max value size </exception>
+        
+        // Converts integer array in integer value.
         private static int ToInt(this int[] array)
         {
             if (array.Length > int.MaxValue)
@@ -140,10 +139,8 @@ namespace Logic.Task3
 
             return result;
         }
-
-        /// <summary>
-        /// Swap elements of array
-        /// </summary>
+        
+        // Swap elements of array
         private static void Swap(ref int firstValue, ref int secondValue)
         {
             int temp = firstValue;
