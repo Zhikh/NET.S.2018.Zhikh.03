@@ -19,19 +19,13 @@ namespace Logic.Task3.Tests
         [TestCase(0, ExpectedResult = -1)]
         public int FindNextBiggerNumber_Integer_CorrectResult(int value)
         {
-            int actual = 0;
-
-            UnusualMath.FindNextBiggerNumber(value, ref actual);
+            int actual =  UnusualMath.FindNextBiggerNumber(value);
 
             return actual;
         }
 
         [TestCase(-231)]
-        public void FindNextBiggerNumber_Integer_ArgumentException(int value)
-        {
-            int actual = 0;
-
-            Assert.Throws<ArgumentException>(() => UnusualMath.FindNextBiggerNumber(value, ref actual));
-        }
+        public void FindNextBiggerNumber_Integer_ArgumentException(int value) 
+            => Assert.Throws<ArgumentException>(() => UnusualMath.FindNextBiggerNumber(value));
     }
 }
