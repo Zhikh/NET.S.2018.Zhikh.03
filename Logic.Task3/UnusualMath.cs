@@ -101,24 +101,31 @@ namespace Logic.Task3
         // Converts integer value to integer array.
         private static int[] ToArray(this int value)
         {
-            if (value == 0)
+            try
             {
-                return new int[1] { 0 };
+                if (value == 0)
+                {
+                    return new int[1] { 0 };
+                }
+
+                var digits = new List<int>();
+
+                while (value != 0)
+                {
+                    digits.Add(value % 10);
+                    value /= 10;
+                }
+
+                int[] array = digits.ToArray();
+
+                Array.Reverse(array);
+
+                return array;
             }
-
-            var digits = new List<int>();
-
-            while (value != 0)
+            catch(Exception ex)
             {
-                digits.Add(value % 10);
-                value /= 10;
+                throw ex;
             }
-
-            int[] array = digits.ToArray();
-
-            Array.Reverse(array);
-
-            return array;
         }
         
         // Converts integer array in integer value.
