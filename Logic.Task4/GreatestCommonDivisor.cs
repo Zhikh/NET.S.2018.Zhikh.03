@@ -4,9 +4,6 @@ namespace Logic.Task4
 {
     public static class GreatestCommonDivisor
     {
-        private delegate int FindTwo(int x, int y);
-        private delegate int FindThree(int x, int y, int z);
-
         #region Public methods
         #region Euclidean
         /// <summary>
@@ -65,7 +62,7 @@ namespace Logic.Task4
         /// <summary>
         /// Finds greatest common divisor for n values.
         /// </summary>
-        /// <param name="values"> Params </param>
+        /// <param name="values"> Values for getting gcd </param>
         /// <returns> Greatest common divisor and time of work </returns>
         public static (int Value, int Time) FindGCDEuclidean(params int[] values)
         {
@@ -161,6 +158,11 @@ namespace Logic.Task4
             return (FindGCDStein(gcd, fourthValue).Value, watch.Elapsed.Milliseconds);
         }
 
+        /// <summary>
+        /// Finds greatest common divisor for n values.
+        /// </summary>
+        /// <param name="values"> Values for getting gcd </param>
+        /// <returns> Greatest common divisor and time of work </returns>
         public static (int Value, int Time) FindGCDStein(params int[] values)
         {
             var watch = System.Diagnostics.Stopwatch.StartNew();
