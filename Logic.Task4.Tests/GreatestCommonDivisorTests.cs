@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using static Logic.Task4.GreatestCommonDivisor;
 
 namespace Logic.Task4.Tests
 {
@@ -15,8 +16,8 @@ namespace Logic.Task4.Tests
         [TestCase(1, 10, ExpectedResult = 1)]
         [TestCase(2, -10, ExpectedResult = 2)]
         [TestCase(661, 113, ExpectedResult = 1)]
-        public int FindGCDEuclidean_TwoParams_CorrectResult(int firstValue, int secondValue)
-            => GreatestCommonDivisor.FindGCDEuclidean(firstValue, secondValue);
+        public int FindGCD_TwoParams_CorrectResult(int firstValue, int secondValue) 
+            => FindGCDEuclidean(firstValue, secondValue).Value;
 
         [TestCase(1, 10, 12, ExpectedResult = 1)]
         [TestCase(5, 10, 45, ExpectedResult = 5)]
@@ -28,7 +29,7 @@ namespace Logic.Task4.Tests
         [TestCase(2, -10, -40, ExpectedResult = 2)]
         [TestCase(661, 113, 333, ExpectedResult = 1)]
         public int FindGCDEuclidean_ThreeParams_CorrectResult(int firstValue, int secondValue, int thirdValue)
-            => GreatestCommonDivisor.FindGCDEuclidean(firstValue, secondValue, thirdValue);
+            => FindGCDEuclidean(firstValue, secondValue, thirdValue).Value;
 
         [TestCase(17, 17, 17, 17, ExpectedResult = 17)]
         [TestCase(15, 10, 7, 7, ExpectedResult = 1)]
@@ -41,7 +42,7 @@ namespace Logic.Task4.Tests
         [TestCase(-9, 0, 0, 0, ExpectedResult = 9)]
         [TestCase(111, 222, 333, 444, ExpectedResult = 111)]
         public int FindGCDEuclidean_FourParams_CorrectResult(int firstValue, int secondValue, int thirdValue, int fourthValue)
-           => GreatestCommonDivisor.FindGCDEuclidean(firstValue, secondValue, thirdValue, fourthValue);
+           => FindGCDEuclidean(firstValue, secondValue, thirdValue, fourthValue).Value;
 
         [TestCase(777, 7, 111, 7, 7, ExpectedResult = 1)]
         [TestCase(555, 10, 5, 25, 15, 5, ExpectedResult = 5)]
@@ -55,7 +56,7 @@ namespace Logic.Task4.Tests
         [TestCase(111, 222, 333, 444, 555, ExpectedResult = 111)]
         [TestCase(0, 0, int.MinValue + 1, 0, 0, int.MaxValue, ExpectedResult = int.MaxValue)]
         public int FindGCDEuclidean_NParams_CorrectResult(params int[] values)
-           => GreatestCommonDivisor.FindGCDEuclidean(values);
+           => FindGCDEuclidean(values: values).Value;
 
         [TestCase(1, 10, ExpectedResult = 1)]
         [TestCase(5, 10, ExpectedResult = 5)]
@@ -67,7 +68,7 @@ namespace Logic.Task4.Tests
         [TestCase(2, -10, ExpectedResult = 2)]
         [TestCase(661, 113, ExpectedResult = 1)]
         public int FindGCDStein_TwoParams_CorrectResult(int firstValue, int secondValue)
-            => GreatestCommonDivisor.FindGCDEuclidean(firstValue, secondValue);
+            => FindGCDStein(firstValue, secondValue).Value;
 
         [TestCase(1, 10, 12, ExpectedResult = 1)]
         [TestCase(5, 10, 45, ExpectedResult = 5)]
@@ -79,7 +80,7 @@ namespace Logic.Task4.Tests
         [TestCase(2, -10, -40, ExpectedResult = 2)]
         [TestCase(661, 113, 333, ExpectedResult = 1)]
         public int FindGCDStein_ThreeParams_CorrectResult(int firstValue, int secondValue, int thirdValue)
-            => GreatestCommonDivisor.FindGCDStein(firstValue, secondValue, thirdValue);
+            => FindGCDStein(firstValue, secondValue, thirdValue).Value;
 
         [TestCase(17, 17, 17, 17, ExpectedResult = 17)]
         [TestCase(15, 10, 7, 7, ExpectedResult = 1)]
@@ -92,7 +93,7 @@ namespace Logic.Task4.Tests
         [TestCase(-9, 0, 0, 0, ExpectedResult = 9)]
         [TestCase(111, 222, 333, 444, ExpectedResult = 111)]
         public int FindGCDStein_FourParams_CorrectResult(int firstValue, int secondValue, int thirdValue, int fourthValue)
-           => GreatestCommonDivisor.FindGCDStein(firstValue, secondValue, thirdValue, fourthValue);
+           => FindGCDStein(firstValue, secondValue, thirdValue, fourthValue).Value;
 
         [TestCase(777, 7, 111, 7, 7, ExpectedResult = 1)]
         [TestCase(555, 10, 5, 25, 15, 5, ExpectedResult = 5)]
@@ -106,6 +107,6 @@ namespace Logic.Task4.Tests
         [TestCase(111, 222, 333, 444, 555, ExpectedResult = 111)]
         [TestCase(0, 0, int.MinValue + 1, 0, 0, int.MaxValue, ExpectedResult = int.MaxValue)]
         public int FindGCDStein_NParams_CorrectResult(params int[] values)
-           => GreatestCommonDivisor.FindGCDStein(values);
+           => FindGCDStein(values).Value;
     }
 }
