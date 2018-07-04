@@ -29,7 +29,7 @@ namespace Logic.Task2
                 throw new ArgumentException("Argument degree can't be less than 0!");
             }
 
-            if ((eps > 0) || (eps < 1))
+            if ((eps < 0) || (eps > 1))
             {
                 throw new ArgumentException("Argument eps can't be less than 0!");
             }
