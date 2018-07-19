@@ -35,13 +35,8 @@ namespace Logic.Task4
         /// <param name="secondValue"> Second value </param>
         /// <param name="thirdValue"> Third value </param>
         /// <returns> Greatest common divisor and time of work </returns>
-        public static (int Value, int Time) FindGCDEuclidean(int firstValue, int secondValue, int thirdValue)
-        {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
-            int gcd = FindGCDEuclidean(firstValue, secondValue).Value;
-
-            return (FindGCDEuclidean(gcd, thirdValue).Value, watch.Elapsed.Milliseconds);
-        }
+        public static (int Value, int Time) FindGCDEuclidean(int firstValue, int secondValue, int thirdValue) 
+            => FindGCD(firstValue, secondValue, thirdValue, FindGCDEuclidean);
 
         /// <summary>
         /// Finds greatest common divisor for four values.
@@ -51,32 +46,16 @@ namespace Logic.Task4
         /// <param name="thirdValue"> Third value </param>
         /// <param name="fourthValue"> Fourth value </param>
         /// <returns> Greatest common divisor and time of work </returns>
-        public static (int Value, int Time) FindGCDEuclidean(int firstValue, int secondValue, int thirdValue, int fourthValue)
-        {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
-            int gcd = FindGCDEuclidean(firstValue, secondValue, thirdValue).Value;
-            
-            return (FindGCDEuclidean(gcd, fourthValue).Value, watch.Elapsed.Milliseconds);
-        }
+        public static (int Value, int Time) FindGCDEuclidean(int firstValue, int secondValue, int thirdValue, int fourthValue) 
+            => FindGCD(firstValue, secondValue, thirdValue, fourthValue, FindGCDEuclidean);
 
         /// <summary>
         /// Finds greatest common divisor for n values.
         /// </summary>
         /// <param name="values"> Values for getting gcd </param>
         /// <returns> Greatest common divisor and time of work </returns>
-        public static (int Value, int Time) FindGCDEuclidean(params int[] values)
-        {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
-            int gcd = 0;
-
-            foreach (var value in values)
-            {
-                gcd = FindGCDEuclidean(gcd, value).Value;
-            }
-            
-            watch.Stop();
-            return (gcd, watch.Elapsed.Milliseconds);
-        }
+        public static (int Value, int Time) FindGCDEuclidean(params int[] values) 
+            => FindGCD(FindGCDEuclidean, values);
         #endregion
 
         #region Stein
@@ -135,12 +114,7 @@ namespace Logic.Task4
         /// <param name="thirdValue"> Third value </param>
         /// <returns> Greatest common divisor and time of work </returns>
         public static (int Value, int Time) FindGCDStein(int firstValue, int secondValue, int thirdValue)
-        {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
-            int gcd = FindGCDStein(firstValue, secondValue).Value;
-
-            return (FindGCDStein(gcd, thirdValue).Value, watch.Elapsed.Milliseconds);
-        }
+            => FindGCD(firstValue, secondValue, thirdValue, FindGCDStein);
 
         /// <summary>
         /// Finds greatest common divisor for four values.
@@ -150,36 +124,56 @@ namespace Logic.Task4
         /// <param name="thirdValue"> Third value </param>
         /// <param name="fourthValue"> Fourth value </param>
         /// <returns> Greatest common divisor and time of work </returns>
-        public static (int Value, int Time) FindGCDStein(int firstValue, int secondValue, int thirdValue, int fourthValue)
-        {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
-            int gcd = FindGCDStein(firstValue, secondValue, thirdValue).Value;
-
-            return (FindGCDStein(gcd, fourthValue).Value, watch.Elapsed.Milliseconds);
-        }
+        public static (int Value, int Time) FindGCDStein(int firstValue, int secondValue, int thirdValue, int fourthValue) 
+            => FindGCD(firstValue, secondValue, thirdValue, fourthValue, FindGCDEuclidean);
 
         /// <summary>
         /// Finds greatest common divisor for n values.
         /// </summary>
         /// <param name="values"> Values for getting gcd </param>
         /// <returns> Greatest common divisor and time of work </returns>
-        public static (int Value, int Time) FindGCDStein(params int[] values)
+        public static (int Value, int Time) FindGCDStein(params int[] values) 
+            => FindGCD(FindGCDStein, values);
+        #endregion
+        #endregion
+
+        #region Private methods
+
+        #region Common logic
+        private static (int Value, int Time) FindGCD(int firstValue, int secondValue, int thirdValue, Func<int, int, (int Value, int Time)> callback)
+        {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            int gcd = callback(firstValue, secondValue).Value;
+
+            return (callback(gcd, thirdValue).Value, watch.Elapsed.Milliseconds);
+        }
+
+        private static (int Value, int Time) FindGCD(int firstValue, int secondValue, int thirdValue, int fourthValue, Func<int, int, (int Value, int Time)> callback)
+        {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            int gcd = callback(firstValue, secondValue).Value;
+
+            gcd = callback(gcd, thirdValue).Value;
+
+            return (callback(gcd, fourthValue).Value, watch.Elapsed.Milliseconds);
+        }
+
+        private static (int Value, int Time) FindGCD(Func<int, int, (int Value, int Time)> callback, params int[] values)
         {
             var watch = System.Diagnostics.Stopwatch.StartNew();
             int gcd = 0;
 
             foreach (var value in values)
             {
-                gcd = FindGCDStein(gcd, value).Value;
+                gcd = callback(gcd, value).Value;
             }
 
             watch.Stop();
             return (gcd, watch.Elapsed.Milliseconds);
         }
         #endregion
-        #endregion
 
-        #region Private methods
+        #region Addition methods
         private static void Swap(ref int firstValue, ref int secondValue)
         {
             int temp = secondValue;
@@ -197,6 +191,7 @@ namespace Logic.Task4
 
             return value;
         }
+        #endregion
         #endregion
     }
 }
